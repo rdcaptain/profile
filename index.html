@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>RD CAPTAIN | Digital Innovation Hub</title>
+    <meta name="description" content="RD Captain delivers premium Android, Web, and Web Application development.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #05050F;
+            color: #EAEAFF;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(5, 5, 15, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(59, 59, 223, 0.2);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+        .logo img {
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(107, 107, 255, 0.4);
+        }
+        .logo span {
+            background: linear-gradient(135deg, #FFFFFF, #A0A0FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #ddd;
+            transition: 0.3s;
+        }
+        .nav-links li a:hover {
+            color: #7b7bff;
+        }
+        .btn-primary {
+            background: linear-gradient(105deg, #3b3bdf, #8b5cf6);
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #6c6cff;
+            color: #cbcbff;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .hamburger .bar {
+            width: 26px;
+            height: 2.5px;
+            background: white;
+            border-radius: 4px;
+        }
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #B794F4, #6C6CFF, #4F46E5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 32px auto;
+            color: #b9c3e6;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .section-padding {
+            padding: 70px 0;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #a5b3d9;
+            margin-bottom: 40px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: rgba(20, 20, 40, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 32px 20px;
+            text-align: center;
+            border: 1px solid rgba(107, 107, 255, 0.2);
+            transition: 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #6c6cff;
+        }
+        .icon-box {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: #8b8bff;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        .tech-marquee {
+            overflow: hidden;
+            background: rgba(10, 10, 25, 0.6);
+            border-radius: 50px;
+            padding: 18px 0;
+        }
+        .tech-track {
+            display: flex;
+            gap: 30px;
+            animation: scrollTech 22s linear infinite;
+            width: max-content;
+        }
+        .tech-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #12122c;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        @keyframes scrollTech {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .features-list {
+            margin-top: 24px;
+            list-style: none;
+        }
+        .features-list li {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .features-list li i {
+            color: #6c6cff;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 32px;
+            padding: 30px 24px;
+            text-align: center;
+            border: 1px solid rgba(107, 107, 255, 0.3);
+        }
+        .glass-card h3 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #ffffff, #b3b3ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(16, 16, 28, 0.7);
+            border-radius: 40px;
+            padding: 36px 28px;
+            border: 1px solid #2a2a55;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: #0a0a18;
+            border: 1px solid #2a2a5a;
+            padding: 14px 18px;
+            border-radius: 28px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            color: white;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6c6cff;
+        }
+        .btn-block {
+            width: 100%;
+            text-align: center;
+        }
+        footer {
+            background: #03030c;
+            border-top: 1px solid #1f1f3a;
+            padding: 50px 0 20px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .social-icons a {
+            color: #bbbbff;
+            font-size: 1.3rem;
+        }
+        .telegram-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0088cc;
+            border-radius: 50px;
+            padding: 10px 24px;
+            text-decoration: none;
+            color: white;
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1f1f3e;
+            padding: 12px 24px;
+            border-radius: 50px;
+            color: #ccf;
+            z-index: 200;
+            transition: 0.3s;
+            border-left: 4px solid #6c6cff;
+        }
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0px);
+        }
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 68px;
+                left: -100%;
+                width: 75%;
+                height: calc(100vh - 68px);
+                background: rgba(5, 5, 20, 0.96);
+                flex-direction: column;
+                justify-content: center;
+                gap: 32px;
+                transition: 0.35s;
+                z-index: 99;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .features-list li {
+                justify-content: center;
+            }
+        }
+        @media (max-width: 550px) {
+            .hero-title {
+                font-size: 1.9rem;
+            }
+            .contact-form {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-container">
+        <a href="#" class="logo">
+            <img src="https://rdcaptain.github.io/profile/logo.png" alt="RD Captain Logo">
+            <span>RD Captain</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tech-stack">Tech Stack</a></li>
+            <li><a href="#about">Why Us</a></li>
+            <li><a href="#contact" class="btn-primary" style="padding: 8px 22px;">Contact Us</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container hero-content">
+        <h1 class="hero-title">Innovate. Build. <span class="gradient-text">Scale.</span></h1>
+        <p class="hero-subtitle">We craft world-class digital experiences. From native Android apps to powerful web platforms.</p>
+        <div class="hero-cta">
+            <a href="#contact" class="btn-primary">Start Your Project</a>
+            <a href="#services" class="btn-secondary">Explore Services</a>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="services section-padding">
+    <div class="container">
+        <h2 class="section-title">Our Expertise</h2>
+        <p class="section-subtitle">Comprehensive solutions for your digital needs.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon-box"><i class="fab fa-android"></i></div>
+                <h3>Android Development</h3>
+                <p>Native, high-performance Android applications with modern Kotlin/Java.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-code"></i></div>
+                <h3>Web Development</h3>
+                <p>Responsive, SEO-optimized websites that drive engagement.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
+                <h3>Web Applications</h3>
+                <p>Scalable web apps with React, Next.js and Node.js.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tech-stack" class="tech-stack section-padding">
+    <div class="container">
+        <h2 class="section-title">Powered By Modern Tech</h2>
+        <div class="tech-marquee">
+            <div class="tech-track">
+                <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
+                <div class="tech-item"><i class="fab fa-html5"></i> HTML5</div>
+                <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+                <div class="tech-item"><i class="fab fa-python"></i> Python</div>
+                <div class="tech-item"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
+                <div class="tech-item"><i class="fas fa-fire"></i> Firebase</div>
+                <div class="tech-item"><i class="fab fa-react"></i> React</div>
+                <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
+                <div class="tech-item"><i class="fab fa-html5"></i> HTML5</div>
+                <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+                <div class="tech-item"><i class="fab fa-python"></i> Python</div>
+                <div class="tech-item"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
+                <div class="tech-item"><i class="fas fa-fire"></i> Firebase</div>
+                <div class="tech-item"><i class="fab fa-react"></i> React</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about section-padding">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <h2 class="section-title">Why Trust RD Captain?</h2>
+                <p>We don't just write code; we build relationships and businesses. Our team delivers excellence.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> <span>Agile Development Process</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>24/7 Support & Maintenance</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Scalable Architecture</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>User-Centric Design</span></li>
+                </ul>
+                <div style="margin-top: 28px;">
+                    <a href="https://t.me/rd_captain" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> Chat on Telegram</a>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="glass-card">
+                    <h3>100+</h3>
+                    <p>Projects Delivered</p>
+                </div>
+                <div class="glass-card">
+                    <h3>98%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact section-padding">
+    <div class="container">
+        <h2 class="section-title">Let's Build Something Great</h2>
+        <p class="section-subtitle">Ready to start your project? Get in touch.</p>
+        <form id="contactForm" class="contact-form">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <textarea id="message" placeholder="Tell us about your project" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-block" id="submitBtn">Send Message <i class="fab fa-telegram-plane"></i></button>
+            <div style="text-align: center; margin-top: 18px;">
+                <span style="color:#8a9bd6;">or reach via</span>
+                <a href="https://t.me/rd_captain" target="_blank" style="color:#6c6cff; margin-left: 8px;"><i class="fab fa-telegram"></i> @rd_captain</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div class="footer-brand">
+            <img src="https://rdcaptain.github.io/profile/logo.png" alt="RD Captain Logo" style="height:48px;width:48px;border-radius:50%">
+            <p>Innovating for the future.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#services" style="color:#b9c3f0;text-decoration:none">Services</a>
+            <a href="#tech-stack" style="color:#b9c3f0;text-decoration:none">Tech Stack</a>
+            <a href="#about" style="color:#b9c3f0;text-decoration:none">Why Us</a>
+        </div>
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>rdcaptain007@gmail.com</p>
+            <div class="social-icons">
+                <a href="https://t.me/rd_captain" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom" style="text-align:center;padding-top:30px;border-top:1px solid #1a1a2e;margin-top:32px">
+        <p>&copy; 2026 RD Captain. All rights reserved.</p>
+    </div>
+</footer>
+
+<div id="toastMsg" class="toast-msg">✓ Message sent! We'll be in touch.</div>
+
+<script>
+    (function() {
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === "#" || targetId === "") return;
+                const targetElem = document.querySelector(targetId);
+                if (targetElem) {
+                    e.preventDefault();
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Toast notification
+        const toast = document.getElementById('toastMsg');
+        function showToast(message, isError = false) {
+            toast.textContent = message || (isError ? "⚠️ Failed to send. Please try again." : "✓ Message delivered! We'll reply within 24h.");
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        // Telegram Bot Configuration
+        const BOT_TOKEN = "8634257138:AAGe46u_nfYxuyOzHMYH8y4LwQTEkyKMWCs";
+        const CHAT_ID = "7748396315";
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Function to send message via Telegram Bot API using AJAX
+        async function sendToTelegram(name, email, message) {
+            const text = `🔔 NEW CONTACT.\n\n👤 Name: ${name}\n📧 Email: ${email}\n💬 Message:\n${message}\n\n— Submitted via website contact form.`;
+            
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        chat_id: CHAT_ID, 
+                        text: text, 
+                        parse_mode: ""
+                    })
+                });
+                const data = await response.json();
+                if (data.ok) {
+                    return { success: true };
+                } else {
+                    console.error("Telegram API Error:", data);
+                    return { success: false, error: data.description };
+                }
+            } catch (err) {
+                console.error("Network Error:", err);
+                return { success: false, error: err.message };
+            }
+        }
+
+        // Form submit handler - NO PAGE RELOAD
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                // Validation
+                if (!name || !email || !message) {
+                    showToast("Please fill all fields before sending.", true);
+                    return;
+                }
+                if (!email.includes('@') || !email.includes('.')) {
+                    showToast("Enter a valid email address.", true);
+                    return;
+                }
+
+                // Disable button and show loading
+                const originalHTML = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
+                submitBtn.disabled = true;
+
+                // Send AJAX request
+                const result = await sendToTelegram(name, email, message);
+
+                if (result.success) {
+                    showToast(`✓ Thank you ${name}! Your message has been sent successfully.`);
+                    contactForm.reset();
+                } else {
+                    showToast(`❌ Failed: ${result.error || "Please try again or contact via Telegram."}`, true);
+                }
+
+                // Re-enable button
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+            });
+        }
+
+        // Active link highlight on scroll
+        const sections = document.querySelectorAll("section");
+        const navAnchors = document.querySelectorAll(".nav-links li a");
+        function updateActiveLink() {
+            let current = "";
+            const scrollPos = window.scrollY + 130;
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const bottom = top + section.offsetHeight;
+                if (scrollPos >= top && scrollPos < bottom) {
+                    current = section.getAttribute("id");
+                }
+            });
+            navAnchors.forEach(link => {
+                link.style.color = "#ddd";
+                const href = link.getAttribute("href");
+                if (href === `#${current}` && current) {
+                    link.style.color = "#a77cff";
+                }
+            });
+        }
+        window.addEventListener("scroll", updateActiveLink);
+        updateActiveLink();
+    })();
+</script>
+</body>
+</html>
