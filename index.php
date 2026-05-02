@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>RD CAPTAIN | Digital Innovation Hub</title>
+    <meta name="description"
+        content="RD Captain delivers premium Android, Web, and Web Application development. Transform your ideas into scalable digital reality.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #05050F;
+            color: #EAEAFF;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f0f1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b3bdf;
+            border-radius: 8px;
+        }
+
+        /* animated grid background */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(#10101a 1px, transparent 1px),
+                linear-gradient(90deg, #10101a 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(5, 5, 15, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(59, 59, 223, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 0 6px #3b3bdf);
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #FFFFFF, #A0A0FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 42px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #ddd;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links li a:hover {
+            color: #7b7bff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, #3b3bdf, #8b5cf6);
+            border: none;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(59, 59, 223, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(59, 59, 223, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #6c6cff;
+            color: #cbcbff;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(107, 107, 255, 0.1);
+            border-color: #9f9fff;
+            color: white;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        /* hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #B794F4, #6C6CFF, #4F46E5);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            color: #b9c3e6;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .glow-effect {
+            animation: pulseGlow 2.2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(59, 59, 223, 0.4);}
+            70% { box-shadow: 0 0 0 15px rgba(59, 59, 223, 0);}
+            100% { box-shadow: 0 0 0 0 rgba(59, 59, 223, 0);}
+        }
+
+        .hero-background .blob {
+            position: absolute;
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .blob-1 { width: 400px; height: 400px; background: #3b3bdf; top: -100px; left: -100px; }
+        .blob-2 { width: 500px; height: 500px; background: #8b5cf6; bottom: -100px; right: -100px; }
+        .blob-3 { width: 300px; height: 300px; background: #4f46e5; top: 50%; left: 40%; }
+
+        /* sections */
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #a5b3d9;
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+
+        /* services grid (only android, web dev, web apps) — removed ios & vps */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            justify-items: center;
+        }
+
+        .service-card {
+            background: rgba(20, 20, 40, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 40px 28px;
+            text-align: center;
+            border: 1px solid rgba(107, 107, 255, 0.2);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #6c6cff;
+            background: rgba(30, 30, 60, 0.8);
+            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.5);
+        }
+
+        .icon-box {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #8b8bff;
+        }
+
+        .service-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+        }
+
+        /* tech marquee */
+        .tech-marquee {
+            overflow: hidden;
+            width: 100%;
+            background: rgba(10, 10, 25, 0.6);
+            border-radius: 60px;
+            padding: 25px 0;
+            border: 1px solid #2a2a4a;
+        }
+
+        .tech-track {
+            display: flex;
+            gap: 50px;
+            animation: scrollTech 25s linear infinite;
+            width: max-content;
+        }
+
+        .tech-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #12122c;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #dbdbff;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+        }
+
+        .tech-item i {
+            font-size: 1.6rem;
+            color: #7c7cff;
+        }
+
+        @keyframes scrollTech {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* about */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .features-list {
+            margin-top: 30px;
+            list-style: none;
+        }
+
+        .features-list li {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .features-list li i {
+            color: #6c6cff;
+            font-size: 1.5rem;
+        }
+
+        .about-visual {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 40px 30px;
+            text-align: center;
+            min-width: 160px;
+            border: 1px solid rgba(107,107,255,0.3);
+        }
+
+        .glass-card h3 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #b3b3ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* contact */
+        .contact-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(16, 16, 28, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            padding: 48px;
+            border: 1px solid #2a2a55;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            background: #0a0a18;
+            border: 1px solid #2a2a5a;
+            padding: 16px 20px;
+            border-radius: 32px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #6c6cff;
+            box-shadow: 0 0 0 3px rgba(108,108,255,0.2);
+        }
+
+        /* footer */
+        footer {
+            background: #03030c;
+            border-top: 1px solid #1f1f3a;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: #9ca3d9;
+            margin-top: 12px;
+        }
+
+        .footer-links, .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a, .footer-contact p {
+            color: #b9c3f0;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #a77cff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        .social-icons a {
+            color: #bbbbff;
+            font-size: 1.5rem;
+            transition: 0.2s;
+        }
+
+        .social-icons a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1a1a2e;
+            color: #6f7aad;
+        }
+
+        /* telegram button style */
+        .telegram-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0088cc;
+            border-radius: 60px;
+            padding: 12px 28px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .telegram-contact i {
+            font-size: 1.3rem;
+        }
+
+        .telegram-contact:hover {
+            background: #00a2ed;
+            transform: translateY(-2px);
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 75px;
+                left: -100%;
+                width: 70%;
+                height: calc(100vh - 75px);
+                background: rgba(5,5,20,0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: 0.4s;
+                z-index: 99;
+                border-right: 1px solid #3b3bdf;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .section-padding {
+                padding: 60px 0;
+            }
+            .contact-form {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* toast message */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1f1f3e;
+            backdrop-filter: blur(12px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            color: #ccf;
+            font-weight: 500;
+            z-index: 200;
+            transition: 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border-left: 4px solid #6c6cff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0px);
+        }
+    </style>
+</head>
+
+<body>
+<div class="grid-background"></div>
+
+<nav class="navbar">
+    <div class="container nav-container">
+        <a href="#" class="logo">
+            <!-- valid logo placeholder (data:image/svg+xml base64 simple RD logo) to avoid missing image-->
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%233b3bdf'/%3E%3Ctext x='50' y='70' font-size='48' text-anchor='middle' fill='white' font-weight='bold'%3ERD%3C/text%3E%3C/svg%3E" alt="Rd Captain Logo">
+            <span>RD Captain</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tech-stack">Tech Stack</a></li>
+            <li><a href="#about">Why Us</a></li>
+            <li><a href="#contact" class="btn-primary" style="padding: 8px 24px;">Contact Us</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container hero-content">
+        <h1 class="hero-title">Innovate. Build. <span class="gradient-text">Scale.</span></h1>
+        <p class="hero-subtitle">We craft world-class digital experiences. From native Android apps to powerful web platforms, RD Captain is your partner in tech excellence.</p>
+        <div class="hero-cta">
+            <a href="#contact" class="btn-primary glow-effect">Start Your Project</a>
+            <a href="#services" class="btn-secondary">Explore Services</a>
+        </div>
+    </div>
+    <div class="hero-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+</header>
+
+<!-- SERVICES section: Android, Web Development, Web Applications (iOS & VPS removed) -->
+<section id="services" class="services section-padding">
+    <div class="container">
+        <h2 class="section-title">Our Expertise</h2>
+        <p class="section-subtitle">Comprehensive solutions for your digital needs.</p>
+        <div class="services-grid">
+            <div class="service-card" data-tilt>
+                <div class="icon-box"><i class="fab fa-android"></i></div>
+                <h3>Android Development</h3>
+                <p>Native, high-performance Android applications tailored to your business goals with modern Kotlin/Java.</p>
+            </div>
+            <div class="service-card" data-tilt>
+                <div class="icon-box"><i class="fas fa-code"></i></div>
+                <h3>Web Development</h3>
+                <p>Responsive, SEO-optimized websites that drive engagement and conversions with stunning UI/UX.</p>
+            </div>
+            <div class="service-card" data-tilt>
+                <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
+                <h3>Web Applications</h3>
+                <p>Complex, scalable web apps built with modern frameworks like React, Next.js and Node.js ecosystem.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tech-stack" class="tech-stack section-padding">
+    <div class="container">
+        <h2 class="section-title">Powered By Modern Tech</h2>
+        <div class="tech-marquee">
+            <div class="tech-track">
+                <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
+                <div class="tech-item"><i class="fab fa-html5"></i> HTML</div>
+                <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS</div>
+                <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+                <div class="tech-item"><i class="fab fa-python"></i> Python</div>
+                <div class="tech-item"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
+                <div class="tech-item"><i class="fas fa-fire"></i> Firebase</div>
+                <div class="tech-item"><i class="fas fa-cubes"></i> Framework</div>
+                <!-- duplicated loop for seamless marquee -->
+                <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
+                <div class="tech-item"><i class="fab fa-html5"></i> HTML</div>
+                <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS</div>
+                <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+                <div class="tech-item"><i class="fab fa-python"></i> Python</div>
+                <div class="tech-item"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
+                <div class="tech-item"><i class="fas fa-fire"></i> Firebase</div>
+                <div class="tech-item"><i class="fas fa-cubes"></i> Framework</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about section-padding">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <h2 class="section-title">Why Trust RD Captain?</h2>
+                <p>We don't just write code; we build relationships and businesses. Our team is dedicated to delivering excellence in every pixel and line of code.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> <span>Agile Development Process</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>24/7 Support & Maintenance</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Scalable Architecture</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>User-Centric Design</span></li>
+                </ul>
+                <!-- Telegram direct contact addition inline -->
+                <div style="margin-top: 32px;">
+                    <a href="https://t.me/rd_captain" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> Chat on Telegram</a>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="glass-card">
+                    <h3>100+</h3>
+                    <p>Projects Delivered</p>
+                </div>
+                <div class="glass-card">
+                    <h3>98%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact section-padding">
+    <div class="container">
+        <h2 class="section-title">Let's Build Something Great</h2>
+        <p class="section-subtitle">Ready to start your project? Get in touch with us today.</p>
+        <div class="contact-wrapper">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Tell us about your project" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-block">Send Message <i class="fab fa-telegram-plane"></i></button>
+                <div style="text-align: center; margin-top: 20px;">
+                    <span style="color:#8a9bd6;">or reach directly via</span>
+                    <a href="https://t.me/rd_captain" target="_blank" style="color:#3b3bdf; margin-left: 10px; font-weight: 600;"><i class="fab fa-telegram"></i> Telegram @rd_captain</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div class="footer-brand">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%233b3bdf'/%3E%3Ctext x='50' y='70' font-size='48' text-anchor='middle' fill='white' font-weight='bold'%3ERD%3C/text%3E%3C/svg%3E" alt="RD Captain Logo" style="height: 48px;">
+            <p>Innovating for the future.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#services">Services</a>
+            <a href="#tech-stack">Tech Stack</a>
+            <a href="#about">Why Us</a>
+        </div>
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>rdcaptain007@gmail.com</p>
+            <div class="social-icons">
+                <a href="https://t.me/rd_captain" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 RD Captain. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Toast message placeholder -->
+<div id="toastMsg" class="toast-msg">✨ Message sent! We'll be in touch.</div>
+
+<script>
+    (function() {
+        // Mobile navigation toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                // optional: animate bars
+                const bars = document.querySelectorAll('.hamburger .bar');
+                if (navLinks.classList.contains('active')) {
+                    bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                    bars[1].style.opacity = '0';
+                    bars[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+                } else {
+                    bars[0].style.transform = 'none';
+                    bars[1].style.opacity = '1';
+                    bars[2].style.transform = 'none';
+                }
+            });
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const bars = document.querySelectorAll('.hamburger .bar');
+                if (bars.length) {
+                    bars[0].style.transform = 'none';
+                    bars[1].style.opacity = '1';
+                    bars[2].style.transform = 'none';
+                }
+            });
+        });
+
+        // smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === "#" || targetId === "") return;
+                const targetElem = document.querySelector(targetId);
+                if (targetElem) {
+                    e.preventDefault();
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Contact form handling + Telegram alert simulation & Telegram redirect for demo
+        const contactForm = document.getElementById('contactForm');
+        const toast = document.getElementById('toastMsg');
+
+        function showToast(message) {
+            toast.textContent = message || "✨ Inquiry sent! We'll respond quickly.";
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3800);
+        }
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !message) {
+                    showToast("Please fill in all fields.");
+                    return;
+                }
+                if (!email.includes('@') || !email.includes('.')) {
+                    showToast("Please enter a valid email.");
+                    return;
+                }
+
+                // Simulate successful form submission (no actual backend)
+                showToast(`Thanks ${name}! We'll get back to you within 24h.`);
+                contactForm.reset();
+
+                // optional: send a mock to Telegram (just user convenience, but redirect to telegram chat)
+                // but as requested also "Telegram এড করবা https://t.me/rd_captain"
+                // we open telegram chat on request? But we'll provide inline already.
+                // For better UX we also trigger optional redirect after a short delay to chat? not forced.
+                // but implement a quick optional redirect? Not to annoy, we just show toast and also user can click Telegram links.
+            });
+        }
+
+        // Also attach tilt-like effect (simple mouse move parallax for service cards - optional but nice)
+        const cards = document.querySelectorAll('.service-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xc = (x / rect.width) * 20 - 10;
+                const yc = (y / rect.height) * 20 - 10;
+                card.style.transform = `perspective(1000px) rotateY(${xc * 0.3}deg) rotateX(${-yc * 0.3}deg) translateY(-6px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // additional active navbar highlight
+        const sections = document.querySelectorAll("section");
+        const navItems = document.querySelectorAll(".nav-links li a");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+            navItems.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.style.color = "#a77cff";
+                } else if(link.getAttribute("href") !== "#contact"){
+                    link.style.color = "#ddd";
+                }
+                if(link.getAttribute("href") === "#contact" && current === "contact"){
+                    link.style.color = "#a77cff";
+                } else if(link.getAttribute("href") === "#contact"){
+                    link.style.color = "#ddd";
+                }
+            });
+        });
+    })();
+</script>
+</body>
+</html>
