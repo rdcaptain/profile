@@ -91,10 +91,20 @@
             color: white;
         }
 
+        /* CIRCULAR LOGO STYLE - square to circle */
         .logo img {
-            height: 40px;
-            width: auto;
-            filter: drop-shadow(0 0 6px #3b3bdf);
+            height: 46px;
+            width: 46px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(107, 107, 255, 0.4), 0 0 0 5px rgba(20, 20, 55, 0.6);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: block;
+        }
+
+        .logo img:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 0 3px #6c6cff, 0 0 14px rgba(108, 108, 255, 0.7);
         }
 
         .logo span {
@@ -275,7 +285,7 @@
             font-size: 1.1rem;
         }
 
-        /* services grid (only android, web dev, web apps) — removed ios & vps */
+        /* services grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -461,6 +471,16 @@
             margin-top: 12px;
         }
 
+        /* footer logo also circular */
+        .footer-brand img {
+            height: 52px;
+            width: 52px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border: 1px solid #3b3bdf;
+        }
+
         .footer-links, .footer-contact {
             display: flex;
             flex-direction: column;
@@ -524,6 +544,28 @@
             transform: translateY(-2px);
         }
 
+        /* toast message */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1f1f3e;
+            backdrop-filter: blur(12px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            color: #ccf;
+            font-weight: 500;
+            z-index: 200;
+            transition: 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border-left: 4px solid #6c6cff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0px);
+        }
+
         /* responsive */
         @media (max-width: 900px) {
             .nav-links {
@@ -571,28 +613,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        /* toast message */
-        .toast-msg {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #1f1f3e;
-            backdrop-filter: blur(12px);
-            padding: 12px 28px;
-            border-radius: 60px;
-            color: #ccf;
-            font-weight: 500;
-            z-index: 200;
-            transition: 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            border-left: 4px solid #6c6cff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            pointer-events: none;
-        }
-        .toast-msg.show {
-            transform: translateX(-50%) translateY(0px);
-        }
     </style>
 </head>
 
@@ -602,8 +622,8 @@
 <nav class="navbar">
     <div class="container nav-container">
         <a href="#" class="logo">
-            <!-- valid logo placeholder to avoid missing image-->
-            <img src="https://rdcaptain.github.io/profile/logo.png" alt="Rd Captain Logo">
+            <!-- Circular logo image (square -> circle via CSS) -->
+            <img src="https://rdcaptain.github.io/profile/logo.png" alt="RD Captain Logo">
             <span>RD Captain</span>
         </a>
         <ul class="nav-links">
@@ -636,23 +656,23 @@
     </div>
 </header>
 
-<!-- SERVICES section: Android, Web Development, Web Applications (iOS & VPS removed) -->
+<!-- SERVICES section -->
 <section id="services" class="services section-padding">
     <div class="container">
         <h2 class="section-title">Our Expertise</h2>
         <p class="section-subtitle">Comprehensive solutions for your digital needs.</p>
         <div class="services-grid">
-            <div class="service-card" data-tilt>
+            <div class="service-card">
                 <div class="icon-box"><i class="fab fa-android"></i></div>
                 <h3>Android Development</h3>
                 <p>Native, high-performance Android applications tailored to your business goals with modern Kotlin/Java.</p>
             </div>
-            <div class="service-card" data-tilt>
+            <div class="service-card">
                 <div class="icon-box"><i class="fas fa-code"></i></div>
                 <h3>Web Development</h3>
                 <p>Responsive, SEO-optimized websites that drive engagement and conversions with stunning UI/UX.</p>
             </div>
-            <div class="service-card" data-tilt>
+            <div class="service-card">
                 <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
                 <h3>Web Applications</h3>
                 <p>Complex, scalable web apps built with modern frameworks like React, Next.js and Node.js ecosystem.</p>
@@ -675,7 +695,7 @@
                 <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
                 <div class="tech-item"><i class="fas fa-fire"></i> Firebase</div>
                 <div class="tech-item"><i class="fas fa-cubes"></i> Framework</div>
-                <!-- duplicated loop for seamless marquee -->
+                <!-- duplicate for seamless -->
                 <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
                 <div class="tech-item"><i class="fab fa-html5"></i> HTML</div>
                 <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS</div>
@@ -702,7 +722,6 @@
                     <li><i class="fas fa-check-circle"></i> <span>Scalable Architecture</span></li>
                     <li><i class="fas fa-check-circle"></i> <span>User-Centric Design</span></li>
                 </ul>
-                <!-- Telegram direct contact addition inline -->
                 <div style="margin-top: 32px;">
                     <a href="https://t.me/rd_captain" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> Chat on Telegram</a>
                 </div>
@@ -749,7 +768,7 @@
 <footer>
     <div class="container footer-content">
         <div class="footer-brand">
-            <img src="https://rdcaptain.github.io/profile/logo.png" alt="RD Captain Logo" style="height: 48px;">
+            <img src="https://rdcaptain.github.io/profile/logo.png" alt="RD Captain Logo">
             <p>Innovating for the future.</p>
         </div>
         <div class="footer-links">
@@ -773,7 +792,6 @@
     </div>
 </footer>
 
-<!-- Toast message placeholder -->
 <div id="toastMsg" class="toast-msg">✨ Message sent! We'll be in touch.</div>
 
 <script>
@@ -784,7 +802,6 @@
         if (hamburger) {
             hamburger.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
-                // optional: animate bars
                 const bars = document.querySelectorAll('.hamburger .bar');
                 if (navLinks.classList.contains('active')) {
                     bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
@@ -811,7 +828,7 @@
             });
         });
 
-        // smooth scroll for all anchor links
+        // smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -824,16 +841,47 @@
             });
         });
 
-        // Contact form handling + Telegram alert simulation & Telegram redirect for demo
-        const contactForm = document.getElementById('contactForm');
         const toast = document.getElementById('toastMsg');
-
-        function showToast(message) {
-            toast.textContent = message || "✨ Inquiry sent! We'll respond quickly.";
+        function showToast(message, isError = false) {
+            toast.textContent = message || (isError ? "Something went wrong." : "✨ Inquiry sent! We'll respond quickly.");
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3800);
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        // ================= TELEGRAM BOT INTEGRATION =================
+        // Replace with your actual bot token and chat ID for production
+        const BOT_TOKEN = "8634257138:AAGe46u_nfYxuyOzHMYH8y4LwQTEkyKMWCs";   // <-- YOUR BOT TOKEN
+        const CHAT_ID = "7748396315";        // <-- YOUR TELEGRAM CHAT ID (or channel username)
+
+        const contactForm = document.getElementById('contactForm');
+        
+        async function sendToTelegram(name, email, message) {
+            const text = `🔔 *New Contact from RD CAPTAIN Website* 🔔\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n💬 *Message:* ${message}\n\n🌐 Sent via RD Captain official contact form.`;
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            const payload = {
+                chat_id: CHAT_ID,
+                text: text,
+                parse_mode: "Markdown",
+                disable_web_page_preview: true
+            };
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                if (data.ok) {
+                    return { success: true };
+                } else {
+                    console.error("Telegram API error:", data);
+                    return { success: false, error: data.description };
+                }
+            } catch (err) {
+                console.error("Network error:", err);
+                return { success: false, error: err.message };
+            }
         }
 
         if (contactForm) {
@@ -844,27 +892,36 @@
                 const message = document.getElementById('message').value.trim();
 
                 if (!name || !email || !message) {
-                    showToast("Please fill in all fields.");
+                    showToast("Please fill in all fields.", true);
                     return;
                 }
                 if (!email.includes('@') || !email.includes('.')) {
-                    showToast("Please enter a valid email.");
+                    showToast("Please enter a valid email address.", true);
                     return;
                 }
 
-                // Simulate successful form submission (no actual backend)
-                showToast(`Thanks ${name}! We'll get back to you within 24h.`);
-                contactForm.reset();
+                // Show sending indicator (optional button state)
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
+                submitBtn.disabled = true;
 
-                // optional: send a mock to Telegram (just user convenience, but redirect to telegram chat)
-                // but as requested also "Telegram এড করবা https://t.me/rd_captain"
-                // we open telegram chat on request? But we'll provide inline already.
-                // For better UX we also trigger optional redirect after a short delay to chat? not forced.
-                // but implement a quick optional redirect? Not to annoy, we just show toast and also user can click Telegram links.
+                // Send to Telegram Bot
+                const result = await sendToTelegram(name, email, message);
+                
+                if (result.success) {
+                    showToast(`Thanks ${name}! Your message was delivered. We'll reply within 24h.`);
+                    contactForm.reset();
+                } else {
+                    showToast(`Delivery failed: ${result.error || "Please try again or contact via Telegram directly."}`, true);
+                }
+                
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             });
         }
 
-        // Also attach tilt-like effect (simple mouse move parallax for service cards - optional but nice)
+        // Tilt effect for service cards
         const cards = document.querySelectorAll('.service-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -880,7 +937,7 @@
             });
         });
 
-        // additional active navbar highlight
+        // Navbar active highlight
         const sections = document.querySelectorAll("section");
         const navItems = document.querySelectorAll(".nav-links li a");
         window.addEventListener("scroll", () => {
@@ -892,20 +949,17 @@
                 }
             });
             navItems.forEach(link => {
-                link.classList.remove("active");
-                if (link.getAttribute("href") === `#${current}`) {
+                link.style.color = "#ddd";
+                const href = link.getAttribute("href");
+                if (href === `#${current}`) {
                     link.style.color = "#a77cff";
-                } else if(link.getAttribute("href") !== "#contact"){
-                    link.style.color = "#ddd";
                 }
-                if(link.getAttribute("href") === "#contact" && current === "contact"){
+                if (href === "#contact" && current === "contact") {
                     link.style.color = "#a77cff";
-                } else if(link.getAttribute("href") === "#contact"){
-                    link.style.color = "#ddd";
                 }
             });
         });
     })();
 </script>
 </body>
-</html>
+    </html>
